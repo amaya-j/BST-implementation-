@@ -1,8 +1,30 @@
+//==============================================================
+// Names: Aisha Barry, Omar Perez, Amaya Joshi
+// Class: CS 271-01
+// Date: 11/07/2024
+// About: BSTNode.cpp contains implementations of
+// the BSTNode class.
+//==============================================================
+
+
 #include "BSTNode.hpp"
 
+//================================================================
+// Amaya Joshi
+// Default Constructor: makes a default node
+// Parametrs: None
+// Return: None
+//=================================================================
 template <typename T>
 BSTNode<T>::BSTNode() : data(T()), left(nullptr), right(nullptr), parent(nullptr) {}
 
+
+//================================================================
+// Aisha Barry
+// Copy Constructor: makes a copy of the parameter 
+// Parametrs: const BSTNode<T>& other
+// Return: None
+//=================================================================
 template <typename T>
 BSTNode<T>::BSTNode(const BSTNode<T>& other) : data(other.data), left(nullptr), right(nullptr), parent(nullptr) {
     if (other.left) {
@@ -18,6 +40,13 @@ BSTNode<T>::BSTNode(const BSTNode<T>& other) : data(other.data), left(nullptr), 
 }
 
 
+
+//================================================================
+// Omar Perez
+// Assignment Operator: assigns parameter to this
+// Parametrs: BSTNode<T>& other
+// Return: BSTNode<T>&
+//=================================================================
 template <typename T>
 BSTNode<T>& BSTNode<T>::operator=(const BSTNode<T>& other) {
     if (this != &other) {
@@ -48,6 +77,13 @@ BSTNode<T>& BSTNode<T>::operator=(const BSTNode<T>& other) {
     return *this;
 }
 
+
+//================================================================
+// Amaya Joshi
+// treeMin: return pointer to the minimum value in the tree
+// Parametrs: none
+// Return: BSTNode<T>*
+//=================================================================
 template <typename T>
 BSTNode<T>* BSTNode<T>::treeMin() {
     BSTNode<T>* current = this;
@@ -57,6 +93,14 @@ BSTNode<T>* BSTNode<T>::treeMin() {
     return current;
 }
 
+
+
+//================================================================
+// Aisha Barry
+// treeMax: return pointer to the maximum value in the tree
+// Parametrs: none
+// Return: BSTNode<T>*
+//=================================================================
 template <typename T>
 BSTNode<T>* BSTNode<T>::treeMax() {
     BSTNode<T>* current = this;
@@ -66,6 +110,13 @@ BSTNode<T>* BSTNode<T>::treeMax() {
     return current;
 }
 
+
+//================================================================
+// Omar Perez
+// printPreOrderTraversal: prints value in tree in preorder.
+// Parametrs: none
+// Return: None
+//=================================================================
 template <typename T>
 void BSTNode<T>::printPreOrderTraversal() const {
     cout << data << " ";
@@ -75,6 +126,14 @@ void BSTNode<T>::printPreOrderTraversal() const {
         right->printPreOrderTraversal();
 }
 
+
+
+//================================================================
+// Amaya Joshi
+// printInOrderTraversal: prints value in tree in inorder.
+// Parametrs: none
+// Return: None
+//=================================================================
 template <typename T>
 void BSTNode<T>::printInOrderTraversal() const {
     if (left)
@@ -84,6 +143,14 @@ void BSTNode<T>::printInOrderTraversal() const {
         right->printInOrderTraversal();
 }
 
+
+
+//================================================================
+// Aisha Barry
+// printPostOrderTraversal: prints value in tree in postorder.
+// Parametrs: none
+// Return: None
+//=================================================================
 template <typename T>
 void BSTNode<T>::printPostOrderTraversal() const {
     if (left)
