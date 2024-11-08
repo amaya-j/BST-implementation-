@@ -1,6 +1,15 @@
+//==============================================================
+// Names: Aisha Barry, Omar Perez, Amaya Joshi
+// Class: CS 271-01
+// Date: 11/07/2024
+// About: BST.hpp contains the definitions for implementations of
+// the BST class.
+//==============================================================
+
+
 #ifndef BST_HPP
 #define BST_HPP
-
+#include "CustomExceptions.hpp"
 #include "BSTNode.hpp"
 #include <iostream>
 #include <exception>
@@ -46,22 +55,7 @@ public:
     void printInOrderTraversal() const;
     void printPostOrderTraversal() const;
 
-    // Exceptions
-    class ValueNotInTreeException : public exception {
-        public:
-            virtual const char* what() const throw() {
-                return "Value not in tree exception";
-            }
-    };
-
-    class EmptyTreeException : public exception {
-        public:
-            virtual const char* what() const throw() {
-                return "Empty tree exception";
-            }
-    };
 };
-
 #include "BST.cpp"  // Include implementation for template class
 
 #endif // BST_HPP
