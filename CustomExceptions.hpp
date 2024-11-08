@@ -1,3 +1,12 @@
+//==============================================================
+// Names: Aisha Barry, Omar Perez, Amaya Joshi
+// Class: CS 271-01
+// Date: 11/07/2024
+// About: Declerations and definitions of the exception used
+//==============================================================
+
+
+
 #ifndef CUSTOMEXCEPTIONS_HPP
 #define CUSTOMEXCEPTIONS_HPP
 using namespace std;
