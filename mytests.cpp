@@ -1,7 +1,15 @@
+//==============================================================
+// Names: Aisha Barry, Omar Perez, Amaya Joshi
+// Class: CS 271-01
+// Date: 11/07/2024
+// About: mytests file for testing all the functions.
+//==============================================================
+
+
 #include <iostream>
 #include "BST.hpp"
 #include "RBTree.hpp"
-
+#include "CustomExceptions.hpp"
 using namespace std;
 
 int main() {
@@ -50,7 +58,7 @@ int main() {
     try {
         cout << "BST minimum value: " << bst.treeMin()->data << endl;
         cout << "BST maximum value: " << bst.treeMax()->data << endl;
-    } catch (const BST<int>::EmptyTreeException& e) {
+    } catch (EmptyTreeException& e) {
         cout << e.what() << endl;
     }
 
@@ -65,7 +73,7 @@ int main() {
     try {
         cout << "Attempting to remove value 100 from BST (not in tree)." << endl;
         bst.remove(100);
-    } catch (const BST<int>::ValueNotInTreeException& e) {
+    } catch (ValueNotInTreeException& e) {
         cout << e.what() << endl;
     }
 
@@ -85,7 +93,7 @@ int main() {
     try {
         cout << "Attempting to find minimum value in an empty BST." << endl;
         bst.treeMin();
-    } catch (const BST<int>::EmptyTreeException& e) {
+    } catch (EmptyTreeException& e) {
         cout << e.what() << endl;
     }
 
@@ -132,7 +140,7 @@ int main() {
     try {
         cout << "RBTree minimum value: " << rbTree.treeMin()->data << endl;
         cout << "RBTree maximum value: " << rbTree.treeMax()->data << endl;
-    } catch (const RBTree<int>::ValueNotInTreeException& e) {
+    } catch (ValueNotInTreeException& e) {
         cout << e.what() << endl;
     }
 
@@ -147,7 +155,7 @@ int main() {
     try {
         cout << "Attempting to remove value 100 from RBTree (not in tree)." << endl;
         rbTree.remove(100);
-    } catch (const RBTree<int>::ValueNotInTreeException& e) {
+    } catch (ValueNotInTreeException& e) {
         cout << e.what() << endl;
     }
 
@@ -165,7 +173,7 @@ int main() {
     try {
         cout << "Attempting to find minimum value in an empty RBTree." << endl;
         rbTree.treeMin();
-    } catch (const RBTree<int>::ValueNotInTreeException& e) {
+    } catch (ValueNotInTreeException& e) {
         cout << e.what() << endl;
     }
 
