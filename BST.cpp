@@ -1,19 +1,58 @@
+//==============================================================
+// Names: Aisha Barry, Omar Perez, Amaya Joshi
+// Class: CS 271-01
+// Date: 11/07/2024
+// About: BST.cpp contains the implementations for
+// the BST class. Handling tree-wide structure and management.
+//==============================================================
+
+
+
 #include "BST.hpp"
 
+//================================================================
+// Amaya Joshi
+// Default Constructor: makes a default node
+// Parametrs: None
+// Return: None
+//=================================================================
 template <typename T>
 BST<T>::BST() : root(nullptr), nodeCount(0) {}
 
+
+//================================================================
+// Aisha Barry
+// Copy Constructor: makes a copy of the parameter 
+// Parametrs: BST<T>& other
+// Return: None
+//=================================================================
 template <typename T>
 BST<T>::BST(const BST<T>& other) : root(nullptr), nodeCount(0) {
     copyTree(this->root, other.root);
     this->nodeCount = other.nodeCount;
 }
 
+
+
+//================================================================
+// Omar Perez
+// Destructor: Deletes the node and the pointers
+// Parametrs: None
+// Return: None
+//=================================================================
 template <typename T>
 BST<T>::~BST() {
     destroyTree(root);
 }
 
+
+
+//================================================================
+// Amaya Joshi
+// Assignment Operator: assigns parameter to this
+// Parametrs: BST<T>& other
+// Return: None
+//=================================================================
 template <typename T>
 BST<T>& BST<T>::operator=(const BST<T>& other) {
     if (this != &other) {
@@ -25,7 +64,14 @@ BST<T>& BST<T>::operator=(const BST<T>& other) {
     return *this;
 }
 
-// Helper function to copy the tree
+
+
+//================================================================
+// Aisha Barry
+// copyTree: thisRoot to otherRoot
+// Parametrs: BSTNode<T>*& thisRoot, BSTNode<T>* otherRoot
+// Return: None
+//=================================================================
 template <typename T>
 void BST<T>::copyTree(BSTNode<T>*& thisRoot, BSTNode<T>* otherRoot) {
     if (otherRoot == nullptr) {
@@ -44,7 +90,14 @@ void BST<T>::copyTree(BSTNode<T>*& thisRoot, BSTNode<T>* otherRoot) {
     }
 }
 
-// Helper function to destroy the tree
+
+
+//================================================================
+// Omar Perez
+// destroyTree: deletes the entire tree rooted at this
+// Parametrs: BSTNode<T>* node
+// Return: None
+//=================================================================
 template <typename T>
 void BST<T>::destroyTree(BSTNode<T>* node) {
     if (node != nullptr) {
@@ -54,7 +107,14 @@ void BST<T>::destroyTree(BSTNode<T>* node) {
     }
 }
 
-// Helper functions to print traversals
+
+
+//================================================================
+// Amaya Joshi
+// printPreOrder: helper for printPreOrderTraversal()
+// Parametrs: BSTNode<T>* node
+// Return: None
+//=================================================================
 template <typename T>
 void BST<T>::printPreOrder(BSTNode<T>* node) const {
     if (node != nullptr) {
@@ -64,6 +124,13 @@ void BST<T>::printPreOrder(BSTNode<T>* node) const {
     }
 }
 
+
+//================================================================
+// Aisha Barry
+// printInOrder: helper for printInOrderTraversal()
+// Parametrs: BSTNode<T>* node
+// Return: None
+//=================================================================
 template <typename T>
 void BST<T>::printInOrder(BSTNode<T>* node) const {
     if (node != nullptr) {
@@ -73,6 +140,13 @@ void BST<T>::printInOrder(BSTNode<T>* node) const {
     }
 }
 
+
+//================================================================
+// Omar Perez
+// printPostOrder: helper for printPostOrderTraversal()
+// Parametrs: BSTNode<T>* node
+// Return: None
+//=================================================================
 template <typename T>
 void BST<T>::printPostOrder(BSTNode<T>* node) const {
     if (node != nullptr) {
@@ -82,8 +156,13 @@ void BST<T>::printPostOrder(BSTNode<T>* node) const {
     }
 }
 
-// Methods implementations
 
+//================================================================
+// Amaya Joshi
+// transplant: implementing transplant from the textbook
+// Parametrs: BSTNode<T>* oldNode, BSTNode<T>* newNode
+// Return: None
+//=================================================================
 template <typename T>
 void BST<T>::transplant(BSTNode<T>* oldNode, BSTNode<T>* newNode) {
     if (oldNode->parent == nullptr) {
@@ -98,16 +177,39 @@ void BST<T>::transplant(BSTNode<T>* oldNode, BSTNode<T>* newNode) {
     }
 }
 
+
+//================================================================
+// Aisha Barry
+// isEmpty: checks if the tree is empty
+// Parametrs: BSTNode<T>* node
+// Return: bool
+//=================================================================
 template <typename T>
 bool BST<T>::isEmpty() const {
     return root == nullptr;
 }
 
+
+
+//================================================================
+// Omar Perez
+// size: returns the #nodes in the BST
+// Parametrs: none
+// Return: long
+//=================================================================
 template <typename T>
 long BST<T>::size() const {
     return nodeCount;
 }
 
+
+
+//================================================================
+// Amaya Joshi
+// insert: inserts a node into the BST
+// Parametrs: T value
+// Return: BSTNode<T>*
+//=================================================================
 template <typename T>
 BSTNode<T>* BST<T>::insert(T value) {
     BSTNode<T>* y = nullptr;
@@ -138,6 +240,14 @@ BSTNode<T>* BST<T>::insert(T value) {
     return z;
 }
 
+
+
+//================================================================
+// Aisha Barry
+// remove: removes a node from the BST
+// Parametrs: T value
+// Return: none
+//=================================================================
 template <typename T>
 void BST<T>::remove(T value) {
     BSTNode<T>* z = search(value);
@@ -169,6 +279,13 @@ void BST<T>::remove(T value) {
     nodeCount--;
 }
 
+
+//================================================================
+// Omar Perez
+// search: returns the pointer to the value to be searched
+// Parametrs: T value
+// Return: BSTNode<T>*
+//=================================================================
 template <typename T>
 BSTNode<T>* BST<T>::search(T value) const {
     BSTNode<T>* x = root;
@@ -182,6 +299,13 @@ BSTNode<T>* BST<T>::search(T value) const {
     return x;
 }
 
+
+//================================================================
+// Amaya Joshi
+// treeMin: return pointer to the minimum value in the tree
+// Parametrs: none
+// Return: BSTNode<T>*
+//=================================================================
 template <typename T>
 BSTNode<T>* BST<T>::treeMin() const {
     if (isEmpty()) {
@@ -194,6 +318,14 @@ BSTNode<T>* BST<T>::treeMin() const {
     return x;
 }
 
+
+
+//================================================================
+// Aisha Barry
+// treeMax: return pointer to the maximum value in the tree
+// Parametrs: none
+// Return: BSTNode<T>*
+//=================================================================
 template <typename T>
 BSTNode<T>* BST<T>::treeMax() const {
     if (isEmpty()) {
@@ -206,18 +338,41 @@ BSTNode<T>* BST<T>::treeMax() const {
     return x;
 }
 
+
+//================================================================
+// Omar Perez
+// printPreOrderTraversal: prints value in tree in preorder.
+// Parametrs: none
+// Return: None
+//=================================================================
 template <typename T>
 void BST<T>::printPreOrderTraversal() const {
     printPreOrder(root);
     cout << endl;
 }
 
+
+
+//================================================================
+// Amaya Joshi
+// printInOrderTraversal: prints value in tree in inorder.
+// Parametrs: none
+// Return: None
+//=================================================================
 template <typename T>
 void BST<T>::printInOrderTraversal() const {
     printInOrder(root);
     cout << endl;
 }
 
+
+
+//================================================================
+// Aisha Barry
+// printPostOrderTraversal: prints value in tree in postorder.
+// Parametrs: none
+// Return: None
+//=================================================================
 template <typename T>
 void BST<T>::printPostOrderTraversal() const {
     printPostOrder(root);
