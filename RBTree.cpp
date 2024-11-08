@@ -1,5 +1,21 @@
+//==============================================================
+// Names: Aisha Barry, Omar Perez, Amaya Joshi
+// Class: CS 271-01
+// Date: 11/07/2024
+// About: RBTree.cpp contains the implementations for
+// the RBTree class. Handling tree-wide structure and management.
+//==============================================================
+
+
 #include "RBTree.hpp"
 
+
+//================================================================
+// Amaya Joshi
+// Default Constructor: makes a default node
+// Parametrs: None
+// Return: None
+//=================================================================
 template <typename T>
 RBTree<T>::RBTree() : root(nullptr), nodeCount(0) {
     // Initialize the NIL sentinel node
@@ -11,6 +27,14 @@ RBTree<T>::RBTree() : root(nullptr), nodeCount(0) {
     root = nil;
 }
 
+
+
+//================================================================
+// Aisha Barry
+// Copy Constructor: makes a copy of the parameter 
+// Parametrs: RBTree<T>& other
+// Return: None
+//=================================================================
 template <typename T>
 RBTree<T>::RBTree(const RBTree<T>& other) : root(nullptr), nodeCount(0) {
     // Initialize the NIL sentinel node
@@ -21,12 +45,28 @@ RBTree<T>::RBTree(const RBTree<T>& other) : root(nullptr), nodeCount(0) {
     this->nodeCount = other.nodeCount;
 }
 
+
+
+//================================================================
+// Omar Perez
+// Destructor: Deletes the node and the pointers
+// Parametrs: None
+// Return: None
+//=================================================================
 template <typename T>
 RBTree<T>::~RBTree() {
     destroyTree(root);
     delete nil;
 }
 
+
+
+//================================================================
+// Amaya Joshi
+// Assignment Operator: assigns parameter to this
+// Parametrs: RBTree<T>& other
+// Return: RBTree<T>&
+//=================================================================
 template <typename T>
 RBTree<T>& RBTree<T>::operator=(const RBTree<T>& other) {
     if (this != &other) {
@@ -38,7 +78,13 @@ RBTree<T>& RBTree<T>::operator=(const RBTree<T>& other) {
     return *this;
 }
 
-// Helper function to copy the tree
+
+//================================================================
+// Aisha Barry
+// copyTree: thisRoot to otherRoot
+// Parametrs: BSTNode<T>*& thisRoot, BSTNode<T>* otherRoot
+// Return: None
+//=================================================================
 template <typename T>
 void RBTree<T>::copyTree(RBTreeNode<T>*& thisRoot, RBTreeNode<T>* otherRoot, RBTreeNode<T>* otherNil) {
     if (otherRoot == otherNil) {
@@ -66,7 +112,15 @@ void RBTree<T>::copyTree(RBTreeNode<T>*& thisRoot, RBTreeNode<T>* otherRoot, RBT
     }
 }
 
-// Helper function to destroy the tree
+
+
+
+//================================================================
+// Omar Perez
+// destroyTree: deletes the entire tree rooted at this
+// Parametrs: BSTNode<T>* node
+// Return: None
+//=================================================================
 template <typename T>
 void RBTree<T>::destroyTree(RBTreeNode<T>* node) {
     if (node != nil) {
@@ -76,6 +130,14 @@ void RBTree<T>::destroyTree(RBTreeNode<T>* node) {
     }
 }
 
+
+
+//================================================================
+// Amaya Joshi
+// leftRotate: performs left rotation
+// Parametrs: RBTreeNode<T>* x
+// Return: None
+//=================================================================
 template <typename T>
 void RBTree<T>::leftRotate(RBTreeNode<T>* x) {
     RBTreeNode<T>* y = x->right;
@@ -100,6 +162,14 @@ void RBTree<T>::leftRotate(RBTreeNode<T>* x) {
 }
 
 
+
+
+//================================================================
+// Aisha Barry
+// rightRotate: performs right rotation
+// Parametrs: RBTreeNode<T>* x
+// Return: None
+//=================================================================
 template <typename T>
 void RBTree<T>::rightRotate(RBTreeNode<T>* y) {
     RBTreeNode<T>* x = y->left;
@@ -124,7 +194,12 @@ void RBTree<T>::rightRotate(RBTreeNode<T>* y) {
 }
 
 
-// Insert fix-up
+//================================================================
+// Omar Perez
+// insertFixup: fixes problems after insertion
+// Parametrs: RBTreeNode<T>* z
+// Return: None
+//=================================================================
 template <typename T>
 void RBTree<T>::insertFixup(RBTreeNode<T>* z) {
     while (z->parent->color == RED) {
@@ -172,6 +247,13 @@ void RBTree<T>::insertFixup(RBTreeNode<T>* z) {
     root->color = BLACK;
 }
 
+
+//================================================================
+// Amaya Joshi
+// deleteFixup: fixes problems after deletion
+// Parametrs: RBTreeNode<T>* x
+// Return: None
+//=================================================================
 template <typename T>
 void RBTree<T>::deleteFixup(RBTreeNode<T>* x) {
     while (x != root && x->color == BLACK) {
@@ -250,7 +332,12 @@ void RBTree<T>::deleteFixup(RBTreeNode<T>* x) {
 
 
 
-// Transplant method
+//================================================================
+// Aisha Barry
+// transplant: implementing transplant from the textbook
+// Parametrs: RBTreeNode<T>* u, RBTreeNode<T>* v
+// Return: None
+//=================================================================
 template <typename T>
 void RBTree<T>::transplant(RBTreeNode<T>* u, RBTreeNode<T>* v) {
     if (u->parent == nil) {
@@ -264,17 +351,37 @@ void RBTree<T>::transplant(RBTreeNode<T>* u, RBTreeNode<T>* v) {
 }
 
 
-
+//================================================================
+// Omar Perez
+// isEmpty: checks if the tree is empty
+// Parametrs: BSTNode<T>* node
+// Return: bool
+//=================================================================
 template <typename T>
 bool RBTree<T>::isEmpty() const {
     return root == nil;
 }
 
+
+//================================================================
+// Amaya Joshi
+// size: returns the #nodes in the BST
+// Parametrs: none
+// Return: long
+//=================================================================
 template <typename T>
 long RBTree<T>::size() const {
     return nodeCount;
 }
 
+
+
+//================================================================
+// Aisha Barry
+// insert: inserts a node into the BST
+// Parametrs: T value
+// Return: RBTreeNode<T>*
+//=================================================================
 template <typename T>
 RBTreeNode<T>* RBTree<T>::insert(T value) {
     RBTreeNode<T>* z = new RBTreeNode<T>();
@@ -308,6 +415,13 @@ RBTreeNode<T>* RBTree<T>::insert(T value) {
     return z;
 }
 
+
+//================================================================
+// Omar Perez
+// remove: removes a node from the BST
+// Parametrs: T value
+// Return: none
+//=================================================================
 template <typename T>
 void RBTree<T>::remove(T value) {
     RBTreeNode<T>* z = search(value);
@@ -358,6 +472,13 @@ void RBTree<T>::remove(T value) {
 }
 
 
+
+//================================================================
+// Amaya Joshi
+// search: returns the pointer to the value to be searched
+// Parametrs: T value
+// Return: RBTreeNode<T>*
+//=================================================================
 template <typename T>
 RBTreeNode<T>* RBTree<T>::search(T value) const {
     RBTreeNode<T>* x = root;
@@ -370,6 +491,14 @@ RBTreeNode<T>* RBTree<T>::search(T value) const {
     return x;
 }
 
+
+
+//================================================================
+// Aisha Barry
+// treeMin: return pointer to the minimum value in the tree
+// Parametrs: none
+// Return: RBTreeNode<T>*
+//=================================================================
 template <typename T>
 RBTreeNode<T>* RBTree<T>::treeMin() const {
     if (isEmpty()) {
@@ -382,6 +511,15 @@ RBTreeNode<T>* RBTree<T>::treeMin() const {
     return x;
 }
 
+
+
+
+//================================================================
+// Omar Perez
+// treeMax: return pointer to the maximum value in the tree
+// Parametrs: none
+// Return: RBTreeNode<T>*
+//=================================================================
 template <typename T>
 RBTreeNode<T>* RBTree<T>::treeMax() const {
     if (isEmpty()) {
@@ -394,7 +532,15 @@ RBTreeNode<T>* RBTree<T>::treeMax() const {
     return x;
 }
 
-// Traversal helper functions
+
+
+
+//================================================================
+// Amaya Joshi
+// printPreOrder: helper for printPreOrderTraversal()
+// Parametrs: RBTreeNode<T>* node
+// Return: None
+//=================================================================
 template <typename T>
 void RBTree<T>::printPreOrder(RBTreeNode<T>* node) const {
     if (node != nil) {
@@ -404,6 +550,14 @@ void RBTree<T>::printPreOrder(RBTreeNode<T>* node) const {
     }
 }
 
+
+
+//================================================================
+// Aisha Barry
+// printInOrder: helper for printInOrderTraversal()
+// Parametrs: RBTreeNode<T>* node
+// Return: None
+//=================================================================
 template <typename T>
 void RBTree<T>::printInOrder(RBTreeNode<T>* node) const {
     if (node != nil) {
@@ -413,6 +567,14 @@ void RBTree<T>::printInOrder(RBTreeNode<T>* node) const {
     }
 }
 
+
+
+//================================================================
+// Omar Perez
+// printPostOrder: helper for printPostOrderTraversal()
+// Parametrs: RBTreeNode<T>* node
+// Return: None
+//=================================================================
 template <typename T>
 void RBTree<T>::printPostOrder(RBTreeNode<T>* node) const {
     if (node != nil) {
@@ -422,18 +584,43 @@ void RBTree<T>::printPostOrder(RBTreeNode<T>* node) const {
     }
 }
 
+
+
+//================================================================
+// Omar Perez
+// printPreOrderTraversal: prints value in tree in preorder.
+// Parametrs: none
+// Return: None
+//=================================================================
 template <typename T>
 void RBTree<T>::printPreOrderTraversal() const {
     printPreOrder(root);
     cout << endl;
 }
 
+
+
+//================================================================
+// Amaya Joshi
+// printInOrderTraversal: prints value in tree in inorder.
+// Parametrs: none
+// Return: None
+//=================================================================
 template <typename T>
 void RBTree<T>::printInOrderTraversal() const {
     printInOrder(root);
     cout << endl;
 }
 
+
+
+
+//================================================================
+// Aisha Barry
+// printPostOrderTraversal: prints value in tree in postorder.
+// Parametrs: none
+// Return: None
+//=================================================================
 template <typename T>
 void RBTree<T>::printPostOrderTraversal() const {
     printPostOrder(root);
