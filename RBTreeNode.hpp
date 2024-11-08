@@ -1,3 +1,12 @@
+//==============================================================
+// Names: Aisha Barry, Omar Perez, Amaya Joshi
+// Class: CS 271-01
+// Date: 11/07/2024
+// About: RBTreeNode.hpp contains the declerations for implementations of
+// the RBTreeNode class.
+//==============================================================
+
+
 #ifndef RBTREENODE_HPP
 #define RBTREENODE_HPP
 
