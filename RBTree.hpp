@@ -1,6 +1,14 @@
+//==============================================================
+// Names: Aisha Barry, Omar Perez, Amaya Joshi
+// Class: CS 271-01
+// Date: 11/07/2024
+// About: RBTree.hpp contains the declerations for implementations of
+// the RBTree class.
+//==============================================================
+
 #ifndef RBTREE_HPP
 #define RBTREE_HPP
-
+#include "CustomExceptions.hpp"
 #include "RBTreeNode.hpp"
 #include <iostream>
 #include <exception>
@@ -56,13 +64,6 @@ public:
     void printInOrderTraversal() const;
     void printPostOrderTraversal() const;
 
-    // Exception class
-    class ValueNotInTreeException : public exception {
-        public:
-            virtual const char* what() const throw() {
-                return "Value not in tree exception";
-            }
-    };
 };
 
 #include "RBTree.cpp" // Include implementation for template class
